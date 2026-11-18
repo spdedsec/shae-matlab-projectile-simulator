@@ -32,20 +32,11 @@ jobs:
         run: |
           make build
 
-      - name: Upload release asset (tar.gz)
-        uses: softprops/asset@v3
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: shae-matlab-projectile-simulator-v${GITHUB_REF#refs/tags/v}.tar.gz
-          path: dist/shae-matlab-projectile-simulator-v${GITHUB_REF#refs/tags/v}.tar.gz
-
-      - name: Upload release asset (zip)
-        uses: softprops/asset@v3
-        with:
-          name: shae-matlab-projectile-simulator-v${GITHUB_REF#refs/tags-v}.zip
-          path: dist/shae-matlab-projectile-simulator-v${GITHUB_REF#refs/tags-v}.zip
-
-      - name: Upload checksums
-        uses: softprops/asset@v3
-        with:
-          name: shae-matlab-projectile-simulator-v${GITHUB_REF#refs/tags-v}.tar.gz.sha256
-          path: dist/shae-matlab-projectile-simulator-v${GITHUB_REF#refs/tags-v}.tar.gz.sha256
+          files: |
+            dist/*.tar.gz
+            dist/*.zip
+            dist/*.sha256
+          body_path: RELEASE_NOTES.md
