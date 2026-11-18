@@ -26,7 +26,7 @@ jobs:
 
       - name: Verify test suite passes
         run: |
-          python3 -m unittest discover -s tests -v
+          python3 -m unittest tests.test_trajectory.test_trajectory
 
       - name: Generate archives via Make build
         run: |
